@@ -220,7 +220,7 @@ func commandInspect(cfg *config, encounter ...string) error {
 	return nil
 }
 
-func commandPokedex(cfg *config) error {
+func commandPokedex(cfg *config, encounter ...string) error {
 	fmt.Println("Your Pokedex:")
 	for _, captures := range cfg.registeredPokemon {
 		fmt.Printf(" -%s\n", captures.Name)
@@ -233,7 +233,7 @@ func commandBattle(cfg *config, encounter ...string) error {
 	return nil
 }
 
-func commandAmie(cfg *config) error {
+func commandAmie(cfg *config, encounter ...string) error {
 	fmt.Println("Pokemon Amie is currently under production.")
 	return nil
 }
