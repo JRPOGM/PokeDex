@@ -243,9 +243,9 @@ func commandAmie(cfg *config, encounter ...string) error {
 		return errors.New("No Pokemon of that name are registered")
 	}
 	if len(pokemon.Name) > 6 {
-		fmt.Println("Your %s dances in a circle", pokemon.Name)
+		fmt.Println("Your %v dances in a circle", pokemon.Name)
 	} else {
-		fmt.Println("%s nuzzles against your hand", pokemon.Name)
+		fmt.Println("%v nuzzles against your hand", pokemon.Name)
 	}
 	return nil
 }
