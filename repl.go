@@ -70,6 +70,11 @@ func getCommands() map[string]regisCommand {
 			description:	"Fight a wild Pokemon with a registered Pokemon",
 			callback:		commandBattle,
 		},
+		"amie": {
+			name:			"amie",
+			description:	"Play with your registered Pokemon",
+			callback:		commandAmie,
+		},
 	}
 }
 
@@ -215,7 +220,7 @@ func commandInspect(cfg *config, encounter ...string) error {
 	return nil
 }
 
-func commandPokedex(cfg *config, encounter ...string) error {
+func commandPokedex(cfg *config) error {
 	fmt.Println("Your Pokedex:")
 	for _, captures := range cfg.registeredPokemon {
 		fmt.Printf(" -%s\n", captures.Name)
@@ -225,5 +230,10 @@ func commandPokedex(cfg *config, encounter ...string) error {
 
 func commandBattle(cfg *config, encounter ...string) error {
 	fmt.Println("Battling wild Pokemon is currently under development.")
+	return nil
+}
+
+func commandAmie(cfg *config) error {
+	fmt.Println("Pokemon Amie is currently under production.")
 	return nil
 }
