@@ -234,6 +234,18 @@ func commandBattle(cfg *config, encounter ...string) error {
 }
 
 func commandAmie(cfg *config, encounter ...string) error {
-	fmt.Println("Amie is currently under development")
+	if len(encounter) != 1 {
+		return errors.New("No Pokemon encountered")
+	}
+	name := encounter[0]
+	pokemon, ok := cfg.registeredPokemon[name]
+	if !ok {
+		return errors.New("No Pokemon of that name are registered")
+	}
+	if len(pokemon.Name) > 6 {
+		fmt.Println("Your %s dances in a circle", pokemon.Name)
+	} else {
+		fmt.Println("%s nuzzles against your hand," pokemon.Name)
+	}
 	return nil
 }
