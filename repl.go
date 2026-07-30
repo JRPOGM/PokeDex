@@ -245,7 +245,7 @@ func commandAmie(cfg *config, encounter ...string) error {
 	if len(pokemon.Name) > 6 {
 		fmt.Println("Your %s dances in a circle", pokemon.Name)
 	} else {
-		fmt.Println("%s nuzzles against your hand," pokemon.Name)
+		fmt.Println("%s nuzzles against your hand", pokemon.Name)
 	}
 	return nil
 }
