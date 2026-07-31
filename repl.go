@@ -273,6 +273,6 @@ func commandAmie(cfg *config, encounter ...string) error {
 }
 
 func commandExperience(cfg *config, encounter ...string) error {
-	fmt.Printf("Experience gained: %v", cfg.experienceBar)
+	fmt.Printf("Experience gained: %v\n", cfg.experienceBar)
 	return nil
 }
