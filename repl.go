@@ -245,14 +245,13 @@ func commandBattle(cfg *config, encounter ...string) error {
 	if err != nil {
 		return err
 	}
-	if len(cfg.registeredPokemon) == 0 {
-		fmt.Println("No Pokemon in party. Unable to battle.")
-	}
 	response := rand.Intn(pokemon.BaseExperience)
 	fmt.Printf("Approaching %s for a battle...\n", pokemon.Name)
-	if response > 60 {
+	if len(cfg.registeredPokemon) == 0 {
+		fmt.Println("No Pokemon in party. Unable to battle.")
+	} else if len(cfg.registeredPokemon) != 0 && if response > 60 {
 		fmt.Printf("%s has won the battle. You run away in a hurry...\n", pokemon.Name)
-	} else {
+	} else if len(cfg.registeredPokemon) != 0 {
 		fmt.Printf("You have defeated %s! 50 exp gained!\n", pokemon.Name)
 		cfg.experienceBar += 50
 	}
