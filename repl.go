@@ -20,6 +20,7 @@ type config struct {
 	pokeapiClient		pokeapi.Client
 	nextLocationURL		*string
 	previousLocationURL	*string
+	experienceBar		int
 	registeredPokemon	map[string]pokeapi.Pokemon
 }
 
@@ -192,8 +193,10 @@ func commandCatch(cfg *config, encounter ...string) error {
 		return nil
 	}
 	fmt.Printf("%s was caught!\n", pokemon.Name)
+	fmt.Println("30 exp gained!")
 	fmt.Println("Pokemon data has now been registered")
 	cfg.registeredPokemon[pokemon.Name] = pokemon
+	cfg.experienceBar += 30
 	return nil
 }
 
@@ -229,7 +232,21 @@ func commandPokedex(cfg *config, encounter ...string) error {
 }
 
 func commandBattle(cfg *config, encounter ...string) error {
-	fmt.Println("Battling wild Pokemon is currently under development.")
+	if len(encounter) != 1 {
+		return errors.New("No Pokemon encountered")
+	}
+	name := encounter[0]
+	pokemon, err := cfg.pokeapiClient.GetPokemon(name)
+	if err != nil {
+		return err
+	}
+	response := rand.Intn(pokemon.BaseExperience)
+	fmt.Printf("Approaching %s for a battle...\n", pokemon.Name)
+	if response > 60 {
+		fmt.Printf("%s has won the battle. You run away in a hurry...\n", pokemon.Name)
+	}
+	fmt.Printf("You have defeated %s! 50 exp gained!\n", pokemon.Name)
+	cfg.experienceBar += 50
 	return nil
 }
 
