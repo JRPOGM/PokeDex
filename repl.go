@@ -76,6 +76,11 @@ func getCommands() map[string]regisCommand {
 			description:	"Play with your registered Pokemon",
 			callback:		commandAmie,
 		},
+		"experience": {
+			name:			"experience",
+			description:	"Displays how much experience has been gained so far",
+			callback:		commandExperience,
+		},
 	}
 }
 
