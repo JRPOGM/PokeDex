@@ -267,10 +267,14 @@ func commandAmie(cfg *config, encounter ...string) error {
 	if !ok {
 		return errors.New("No Pokemon of that name are registered")
 	}
-	if len(pokemon.Name) > 6 {
-		fmt.Printf("Your %v dances in a circle\n", pokemon.Name)
-	} else {
-		fmt.Printf("%v nuzzles against your hand\n", pokemon.Name)
+	if len(pokemon.Name) > 10 {
+		fmt.Printf("Your %s dances in a circle\n", pokemon.Name)
+	} else if len(pokemon.Name) < 11 && len(pokemon.Name) > 7 {
+		fmt.Printf("%s nuzzles against your hand\n", pokemon.Name)
+	} else if len(pokemon.Name) < 8 && len(pokemon.Name) > 5 {
+		fmt.Printf("%s wishes to spend more time with you\n", pokemon.Name)
+	} else if len(pokemon.Name) < 6 {
+		fmt.Printf("Your %s hungers for battle\n", pokemon.Name)
 	}
 	return nil
 }
