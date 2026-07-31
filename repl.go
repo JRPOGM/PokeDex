@@ -249,9 +249,10 @@ func commandBattle(cfg *config, encounter ...string) error {
 	fmt.Printf("Approaching %s for a battle...\n", pokemon.Name)
 	if response > 60 {
 		fmt.Printf("%s has won the battle. You run away in a hurry...\n", pokemon.Name)
+	} else {
+		fmt.Printf("You have defeated %s! 50 exp gained!\n", pokemon.Name)
+		cfg.experienceBar += 50
 	}
-	fmt.Printf("You have defeated %s! 50 exp gained!\n", pokemon.Name)
-	cfg.experienceBar += 50
 	return nil
 }
 
