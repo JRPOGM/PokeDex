@@ -22,6 +22,7 @@ type config struct {
 	previousLocationURL	*string
 	experienceBar		int
 	badgeCase			int
+	victoryCase			int
 	registeredPokemon	map[string]pokeapi.Pokemon
 }
 
@@ -91,6 +92,16 @@ func getCommands() map[string]regisCommand {
 			name:			"badge case",
 			description:	"Look at the amount of badges obtained",
 			callback:		commandBadgeCase,
+		},
+		"victorybadge": {
+			name:			"victory badge",
+			description:	"Buy a Victory Road badge for x experience points each",
+			callback:		commandVictoryBadge,
+		},
+		"victorycase": {
+			name:			"victory case",
+			description:	"Look at the amount of victory badges obtained",
+			callback:		commandVictoryCase,
 		},
 	}
 }
@@ -311,5 +322,15 @@ func commandBuyBadge(cfg *config, encounter ...string) error {
 }
 func commandBadgeCase(cfg *config, encounter ...string) error {
 	fmt.Printf("Badges obtained: %v\n", cfg.badgeCase)
+	return nil
+}
+
+func commandVictoryBadge(cfg *config, encounter ...string) error {
+	fmt.Println("Victory Badge obtain methods currently under production.")
+	return nil
+}
+
+func commandVictoryCase(cfg *config, encounter ...string) error {
+	fmt.Println("Victory Badge storage currently under production.")
 	return nil
 }
