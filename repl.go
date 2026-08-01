@@ -304,6 +304,9 @@ func commandBuyBadge(cfg *config, encounter ...string) error {
 	} else {
 		fmt.Printf("Not enough experience to obtain badge. Current experience: %v\n", cfg.experienceBar)
 	}
+	if cfg.badgeCase == 8 {
+		fmt.Println("You've obtained 8 badges! You are now able to obtain the Victory badges!")
+	}
 	return nil
 }
 func commandBadgeCase(cfg *config, encounter ...string) error {
