@@ -87,6 +87,11 @@ func getCommands() map[string]regisCommand {
 			description:	"Buy a Gym badge for 200 experience points each",
 			callback:		commandBuyBadge,
 		},
+		"badgecase": {
+			name			"badge case",
+			description:	"Look at the amount of badges obtained",
+			callback:		commmandBadgeCase,
+		},
 	}
 }
 
