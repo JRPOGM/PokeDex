@@ -302,7 +302,7 @@ func commandBuyBadge(cfg *config, encounter ...string) error {
 		cfg.experienceBar -= 200
 		cfg.badgeCase++
 	} else {
-		fmt.Printf("Not enough experience to obtain badge. Current experience: %v", cfg.experienceBar)
+		fmt.Printf("Not enough experience to obtain badge. Current experience: %v\n", cfg.experienceBar)
 	}
 	return nil
 }
