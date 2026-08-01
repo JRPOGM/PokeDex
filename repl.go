@@ -88,7 +88,7 @@ func getCommands() map[string]regisCommand {
 			callback:		commandBuyBadge,
 		},
 		"badgecase": {
-			name			"badge case",
+			name:			"badge case",
 			description:	"Look at the amount of badges obtained",
 			callback:		commmandBadgeCase,
 		},
