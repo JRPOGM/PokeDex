@@ -21,6 +21,7 @@ type config struct {
 	nextLocationURL		*string
 	previousLocationURL	*string
 	experienceBar		int
+	badgeCase			int
 	registeredPokemon	map[string]pokeapi.Pokemon
 }
 
@@ -80,6 +81,11 @@ func getCommands() map[string]regisCommand {
 			name:			"experience",
 			description:	"Displays how much experience has been gained so far",
 			callback:		commandExperience,
+		},
+		"buybadge": {
+			name:			"buy badge",
+			description:	"Buy a Gym badge for 200 experience points each",
+			callback:		commandBuyBadge,
 		},
 	}
 }
@@ -281,5 +287,10 @@ func commandAmie(cfg *config, encounter ...string) error {
 
 func commandExperience(cfg *config, encounter ...string) error {
 	fmt.Printf("Experience gained: %v\n", cfg.experienceBar)
+	return nil
+}
+
+func commandBuyBadge(cfg *config, encounter ...string) error {
+	fmt.Println("Working on collecting badges.")
 	return nil
 }
