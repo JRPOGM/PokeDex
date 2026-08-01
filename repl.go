@@ -293,8 +293,8 @@ func commandExperience(cfg *config, encounter ...string) error {
 func commandBuyBadge(cfg *config, encounter ...string) error {
 	if cfg.experienceBar >= 200 {
 		fmt.Println("Spending experience to buy a badge")
-		cfg.experienceBar - 200
-		cfg.badgeCase + 1
+		cfg.experienceBar -= 200
+		cfg.badgeCase++
 	} else {
 		fmt.Println("Not enough experience to obtain badge. Current experience: %v", cfg.experienceBar)
 	}
