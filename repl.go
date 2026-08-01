@@ -90,7 +90,7 @@ func getCommands() map[string]regisCommand {
 		"badgecase": {
 			name:			"badge case",
 			description:	"Look at the amount of badges obtained",
-			callback:		commmandBadgeCase,
+			callback:		commandBadgeCase,
 		},
 	}
 }
