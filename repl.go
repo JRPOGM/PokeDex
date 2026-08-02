@@ -224,6 +224,9 @@ func commandCatch(cfg *config, encounter ...string) error {
 	fmt.Println("Pokemon data has now been registered")
 	cfg.registeredPokemon[pokemon.Name] = pokemon
 	cfg.experienceBar += 30
+	if len(cfg.registeredPokemon) == 50 {
+		fmt.Printf("Congratulations! You've managed to catch %v Pokemon! But there are many more still to catch. Don't stop traveling now!\n", len(cfg.registeredPokemon))
+	}
 	return nil
 }
 
