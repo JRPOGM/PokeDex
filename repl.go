@@ -326,11 +326,21 @@ func commandBadgeCase(cfg *config, encounter ...string) error {
 }
 
 func commandVictoryBadge(cfg *config, encounter ...string) error {
-	fmt.Println("Victory Badge obtain methods currently under production.")
+	if cfg.experienceBar >= 500 {
+		fmt.Println("Spending experience to buy a badge\n")
+		fmt.Println("Congrats on obtaining a Victory Badge! The Victory Badge has been added to your Victory Case!\n")
+		cfg.experienceBar -= 500
+		cfg.victoryCase++
+	} else {
+		fmt.Printf("Not enough experience to obtain a Victory Badge. Current experience: %v\n", cfg.experienceBar)
+	}
+	if cfg.victoryCase == 4 {
+		fmt.Println("You've obtained the 4 Victory Badges! You are now able to obtain the Champion Badge!")
+	}
 	return nil
 }
 
 func commandVictoryCase(cfg *config, encounter ...string) error {
-	fmt.Println("Victory Badge storage currently under production.")
+	fmt.Printf("Victory Badges obtained: %v\n", cfg.victoryCase)
 	return nil
 }
