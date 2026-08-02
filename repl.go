@@ -300,12 +300,12 @@ func commandBattle(cfg *config, encounter ...string) error {
 
 func commandAmie(cfg *config, encounter ...string) error {
 	if len(encounter) != 1 {
-		return errors.New("No Pokemon encountered")
+		return errors.New("No Pokemon encountered\n")
 	}
 	name := encounter[0]
 	pokemon, ok := cfg.registeredPokemon[name]
 	if !ok {
-		return errors.New("No Pokemon of that name are registered")
+		return errors.New("No Pokemon of that name are registered\n")
 	}
 	switch len(pokemon.Name) {
 	case 12:
