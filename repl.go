@@ -21,10 +21,14 @@ type config struct {
 	nextLocationURL		*string
 	previousLocationURL	*string
 	experienceBar		int
-	badgeCase			int
-	victoryCase			int
-	championCase		int
+	Case				Badges
 	registeredPokemon	map[string]pokeapi.Pokemon
+}
+
+type Badges struct {
+	Gym			int
+	Victory		int
+	Champion	int
 }
 
 func getCommands() map[string]regisCommand {
@@ -91,7 +95,7 @@ func getCommands() map[string]regisCommand {
 		},
 		"badgecase": {
 			name:			"badge case",
-			description:	"Look at the amount of Badges obtained",
+			description:	"Look at the amount of Gym Badges obtained",
 			callback:		commandBadgeCase,
 		},
 		"victorybadge": {
@@ -323,63 +327,63 @@ func commandExperience(cfg *config, encounter ...string) error {
 
 func commandBuyBadge(cfg *config, encounter ...string) error {
 	if cfg.experienceBar >= 200 {
-		fmt.Println("Spending experience to buy a Badge\n")
-		fmt.Println("Congrats on obtaining a Badge! Badge has been added to your Badge Case!\n")
+		fmt.Println("Spending experience to buy a Gym Badge\n")
+		fmt.Println("Congrats on obtaining a Gym Badge! The Gym Badge has been added to your Badge Case!\n")
 		cfg.experienceBar -= 200
-		cfg.badgeCase++
+		cfg.Case.Gym++
 	} else {
-		fmt.Printf("Not enough experience to obtain Badge. Current experience: %v\n", cfg.experienceBar)
+		fmt.Printf("Not enough experience to obtain a Gym Badge. Current experience: %v\n", cfg.experienceBar)
 	}
-	if cfg.badgeCase % 8 == 0 {
-		fmt.Printf("You've obtained %v Badges! You are now able to obtain a set of 4 Victory Badges!\n", cfg.badgeCase)
+	if cfg.Case.Gym % 8 == 0 {
+		fmt.Printf("You've obtained %v Gym Badges! You are now able to obtain a set of 4 Victory Badges!\n", cfg.Case.Gym)
 	}
 	return nil
 }
 func commandBadgeCase(cfg *config, encounter ...string) error {
-	fmt.Printf("Badges obtained: %v\n", cfg.badgeCase)
+	fmt.Printf("Badges obtained: %v\n", cfg.Case.Gym)
 	return nil
 }
 
 func commandVictoryBadge(cfg *config, encounter ...string) error {
-	if cfg.badgeCase % 8 == 0 {
+	if cfg.Case.Gym % 8 == 0 {
 		if cfg.experienceBar >= 500 {
 			fmt.Println("Spending experience to buy a Victory Badge\n")
 			fmt.Println("Congrats on obtaining a Victory Badge! The Victory Badge has been added to your Victory Case!\n")
 			cfg.experienceBar -= 500
-			cfg.victoryCase++
+			cfg.Case.Victory++
 		} else {
 			fmt.Printf("Not enough experience to obtain a Victory Badge. Current experience: %v\n", cfg.experienceBar)
 		}
 	}
-	if cfg.victoryCase % 4 == 0 {
-		fmt.Println("You've obtained %v Victory Badges! You are now able to obtain a Champion Badge!\n", cfg.victoryCase)
+	if cfg.Case.Victory % 4 == 0 {
+		fmt.Println("You've obtained %v Victory Badges! You are now able to obtain a Champion Badge!\n", cfg.Case.Victory)
 	}
 	return nil
 }
 
 func commandVictoryCase(cfg *config, encounter ...string) error {
-	fmt.Printf("Victory Badges obtained: %v\n", cfg.victoryCase)
+	fmt.Printf("Victory Badges obtained: %v\n", cfg.Case.Victory)
 	return nil
 }
 
 func commandChampionBadge(cfg *config, encounter ...string) error {
-	if cfg.victoryCase % 4 == 0 {
+	if cfg.Case.Victory % 4 == 0 {
 		if cfg.experienceBar >= 1000 {
 			fmt.Println("Spending experience to buy a Champion Badge\n")
 			fmt.Println("Congrats on obtaining a Champion Badge! The Champion Badge has been added to your Champion Case!\n")
 			cfg.experienceBar -= 1000
-			cfg.championCase++
+			cfg.Case.Champion++
 		} else {
 			fmt.Printf("Not enough experience to obtain a Champion Badge. Current experience: %v\n", cfg.experienceBar)
 		}
 	}
-	if cfg.championCase == 9 {
+	if cfg.Case.Champion == 9 {
 		fmt.Println("Congratulations on obtaining a Champion Badge for all known region champion leagues! But do not believe your adventure is over yet. The future can still hold more...")
 	}
 	return nil
 }
 
 func commandChampionCase(cfg *config, encounter ...string) error {
-	fmt.Printf("Champions Badges obtained: %v\n", cfg.championCase)
+	fmt.Printf("Champions Badges obtained: %v\n", cfg.Case.Champion)
 	return nil
 }
