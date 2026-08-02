@@ -348,7 +348,7 @@ func commandVictoryBadge(cfg *config, encounter ...string) error {
 			cfg.experienceBar -= 500
 			cfg.victoryCase++
 		} else {
-			fmt.Printf("Not enough experience or badges to obtain a Victory Badge. Current experience: %v\n", cfg.experienceBar)
+			fmt.Printf("Not enough experience to obtain a Victory Badge. Current experience: %v\n", cfg.experienceBar)
 		}
 	}
 	if cfg.victoryCase % 4 == 0 {
@@ -363,11 +363,23 @@ func commandVictoryCase(cfg *config, encounter ...string) error {
 }
 
 func commandChampionBadge(cfg *config, encounter ...string) error {
-	fmt.Println("Development on the Champion badge requirements are currently under production.")
+	if cfg.victoryCase % 4 == 0 {
+		if cfg.experienceBar >= 1000 {
+			fmt.Println("Spending experience to buy a Champion Badge\n")
+			fmt.Println("Congrats on obtaining a Champion Badge! The Champion Badge has been added to your Champion Case!\n")
+			cfg.experienceBar -= 1000
+			cfg.championCase++
+		} else {
+			fmt.Printf("Not enough experience to obtain a Champion Badge. Current experience: %v\n", cfg.experienceBar)
+		}
+	}
+	if cfg.championCase == 9 {
+		fmt.Println("Congratulations on obtaining a Champion Badge for all known region champion leagues! But do not believe your adventure is over yet. The future can still hold more...")
+	}
 	return nil
 }
 
 func commandChampionCase(cfg *config, encounter ...string) error {
-	fmt.Println("Development on the Champion badge case is currently under development.")
+	fmt.Printf("Champions Badges obtained: %v\n", cfg.championCase)
 	return nil
 }
