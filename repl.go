@@ -301,6 +301,7 @@ func commandAmie(cfg *config, encounter ...string) error {
 	} else if len(pokemon.Name) < 6 {
 		fmt.Printf("Your %s hungers for battle\n", pokemon.Name)
 	}
+	cfg.experienceBar += 10
 	return nil
 }
 
