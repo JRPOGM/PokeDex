@@ -330,6 +330,7 @@ func commandAmie(cfg *config, encounter ...string) error {
 		fmt.Printf("Your %s is learning their left from their right\n", pokemon.Name)
 	}
 	cfg.experienceBar += 10
+	fmt.Println("10 exp gained!")
 	return nil
 }
 
