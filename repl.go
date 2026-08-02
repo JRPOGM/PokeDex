@@ -23,6 +23,7 @@ type config struct {
 	experienceBar		int
 	badgeCase			int
 	victoryCase			int
+	championCase		int
 	registeredPokemon	map[string]pokeapi.Pokemon
 }
 
