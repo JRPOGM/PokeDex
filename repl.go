@@ -95,13 +95,18 @@ func getCommands() map[string]regisCommand {
 		},
 		"victorybadge": {
 			name:			"victory badge",
-			description:	"Buy a Victory Road badge for x experience points each",
+			description:	"Buy a Victory Road badge for 500 experience points each",
 			callback:		commandVictoryBadge,
 		},
 		"victorycase": {
 			name:			"victory case",
 			description:	"Look at the amount of victory badges obtained",
 			callback:		commandVictoryCase,
+		},
+		"championbadge": {
+			name:			"champion badge",
+			description:	"Buy a Champion Badge for 1000 experience points each",
+			callback:		commandChampionBadge,
 		},
 	}
 }
@@ -348,5 +353,10 @@ func commandVictoryBadge(cfg *config, encounter ...string) error {
 
 func commandVictoryCase(cfg *config, encounter ...string) error {
 	fmt.Printf("Victory Badges obtained: %v\n", cfg.victoryCase)
+	return nil
+}
+
+func commandChampionBadge(cfg *config, encounter ...string) error {
+	fmt.Println("Development on the Champion badge requirements are currently under production.")
 	return nil
 }
