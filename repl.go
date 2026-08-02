@@ -307,14 +307,27 @@ func commandAmie(cfg *config, encounter ...string) error {
 	if !ok {
 		return errors.New("No Pokemon of that name are registered")
 	}
-	if len(pokemon.Name) > 10 {
-		fmt.Printf("Your %s dances in a circle\n", pokemon.Name)
-	} else if len(pokemon.Name) < 11 && len(pokemon.Name) > 7 {
-		fmt.Printf("%s nuzzles against your hand\n", pokemon.Name)
-	} else if len(pokemon.Name) < 8 && len(pokemon.Name) > 5 {
-		fmt.Printf("%s wishes to spend more time with you\n", pokemon.Name)
-	} else if len(pokemon.Name) < 6 {
+	switch len(pokemon.Name) {
+	case 12:
 		fmt.Printf("Your %s hungers for battle\n", pokemon.Name)
+	case 11:
+		fmt.Printf("%s lies down to bathe in the sun\n", pokemon.Name)
+	case 10:
+		fmt.Printf("Your %s dances in a circle\n", pokemon.Name)
+	case 9:
+		fmt.Printf("%s wraps around your legs\n", pokemon.Name)
+	case 8:
+		fmt.Printf("%s nuzzles against your hand\n", pokemon.Name)
+	case 7:
+		fmt.Printf("%s bounces on the balls of their feet\n", pokemon.Name)
+	case 6:
+		fmt.Printf("%s tries to jump on your shoulder\n", pokemon.Name)
+	case 5:
+		fmt.Printf("%s wishes to spend more time with you\n", pokemon.Name)
+	case 4:
+		fmt.Printf("Your %s pats the top of your head\n", pokemon.Name)
+	default:
+		fmt.Printf("Your %s is learning their left from their right\n", pokemon.Name)
 	}
 	cfg.experienceBar += 10
 	return nil
