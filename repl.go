@@ -351,6 +351,7 @@ func commandBuyBadge(cfg *config, encounter ...string) error {
 	}
 	if cfg.Case.Gym % 8 == 0 {
 		fmt.Printf("You've obtained %v Gym Badges! You are now able to obtain a set of 4 Victory Badges!\n", cfg.Case.Gym)
+		cfg.experienceBar += 100
 	}
 	return nil
 }
@@ -360,18 +361,19 @@ func commandBadgeCase(cfg *config, encounter ...string) error {
 }
 
 func commandVictoryBadge(cfg *config, encounter ...string) error {
-	if cfg.Case.Gym % 8 == 0 {
+	if cfg.Case.Gym >= 8 {
 		if cfg.experienceBar >= 500 {
 			fmt.Println("Spending experience to buy a Victory Badge\n")
 			fmt.Println("Congrats on obtaining a Victory Badge! The Victory Badge has been added to your Victory Case!\n")
 			cfg.experienceBar -= 500
 			cfg.Case.Victory++
 		} else {
-			fmt.Printf("Not enough experience to obtain a Victory Badge. Current experience: %v\n", cfg.experienceBar)
+			fmt.Printf("Not enough experience or Gym Badges to obtain a Victory Badge.\nCurrent experience: %v\nCurrent Gym Badges: %v\n", cfg.experienceBar, cfg.Case.Gym)
 		}
 	}
 	if cfg.Case.Victory % 4 == 0 {
 		fmt.Println("You've obtained %v Victory Badges! You are now able to obtain a Champion Badge!\n", cfg.Case.Victory)
+		cfg.experienceBar += 200
 	}
 	return nil
 }
@@ -382,14 +384,14 @@ func commandVictoryCase(cfg *config, encounter ...string) error {
 }
 
 func commandChampionBadge(cfg *config, encounter ...string) error {
-	if cfg.Case.Victory % 4 == 0 {
+	if cfg.Case.Victory >= 4{
 		if cfg.experienceBar >= 1000 {
 			fmt.Println("Spending experience to buy a Champion Badge\n")
 			fmt.Println("Congrats on obtaining a Champion Badge! The Champion Badge has been added to your Champion Case!\n")
 			cfg.experienceBar -= 1000
 			cfg.Case.Champion++
 		} else {
-			fmt.Printf("Not enough experience to obtain a Champion Badge. Current experience: %v\n", cfg.experienceBar)
+			fmt.Printf("Not enough experience or Victory Badges to obtain a Champion Badge.\nCurrent experience: %v\nCurrent Victory Badges: %v\n", cfg.experienceBar, cfg.Case.Victory)
 		}
 	}
 	if cfg.Case.Champion == 9 {
