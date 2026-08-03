@@ -241,6 +241,7 @@ func commandCatch(cfg *config, encounter ...string) error {
 	cfg.experienceBar += 30
 	if len(cfg.registeredPokemon) % 25 == 0 {
 		fmt.Printf("Congratulations! You've managed to catch %v Pokemon! But there are many more still to catch. Don't stop traveling now!\n", len(cfg.registeredPokemon))
+		cfg.experienceBar += 100
 	}
 	return nil
 }
