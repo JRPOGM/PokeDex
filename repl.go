@@ -372,7 +372,7 @@ func commandVictoryBadge(cfg *config, encounter ...string) error {
 		}
 	}
 	if cfg.Case.Victory % 4 == 0 {
-		fmt.Println("You've obtained %v Victory Badges! You are now able to obtain a Champion Badge!\n", cfg.Case.Victory)
+		fmt.Printf("You've obtained %v Victory Badges! You are now able to obtain a Champion Badge!\n", cfg.Case.Victory)
 		cfg.experienceBar += 200
 	}
 	return nil
