@@ -356,7 +356,7 @@ func commandBuyBadge(cfg *config, encounter ...string) error {
 	return nil
 }
 func commandBadgeCase(cfg *config, encounter ...string) error {
-	fmt.Printf("Badges obtained: %v\n", cfg.Case.Gym)
+	fmt.Printf("Gym Badges obtained: %v\n", cfg.Case.Gym)
 	return nil
 }
 
